@@ -1,0 +1,117 @@
+/************************************************************
+NDIは元々、「有線」が基本
+************************************************************/
+NDIは「ネットワーク越し」というイメージがありますが、
+実際には有線GbE(1Gbps)で使うことを前提に設計された技術と言ってもいいくらいです。
+ライブ映像業界でも、有線LANが基本です。
+
+
+/************************************************************
+Device List
+************************************************************/
+■ ネイティブNDIカメラ
+	■ Device
+		- BirdDog P120
+		- BirdDog X1
+		- PTZOptics Move SE
+		- Panasonic AW-UE20	
+
+
+■ NDI Encoder
+	■ 接続イメージ
+		Sony Camera -HDMI- NDI Encoder -Lan- mac
+		
+	■ Device
+		- BirdDog Flex 4K IN
+		- Magewell Pro Convert HDMI TX	
+
+
+■ Capture Card
+	■ 接続イメージ
+		Sony α7 -HDMI- Capture Card -USB(UVC)- mac -NDI- ...
+	
+	■ Device
+		- Elgato Cam Link 4K
+			¥18,000
+			
+			これは本当に定番です。
+				UVC対応
+				macOSとの相性も良い
+				一眼レフ用途で利用者が非常に多い
+				USBメモリのようなサイズ
+			価格も2万円弱くらいなので、最初の1台としてかなりおすすめです。
+		
+		- Magewell USB Capture HDMI Gen 2
+			¥61,000
+			
+			これは業務用です。
+			ライブイベントや放送現場でもよく使われるメーカーで、
+				とにかく安定
+				発熱が少ない
+				HDMI信号への耐性が高い
+				長時間運用向き
+			という特徴があります。業界でも「困ったらMagewell」と言われることがあるくらい信頼されています。Redditの映像エンジニアコミュニティでも評価が高いです。
+			価格は6〜8万円くらいですが、インスタレーション用途なら十分検討する価値があります。
+		
+		- Blackmagic Design UltraStudio Recorder 3G
+			¥20,000
+			
+			Blackmagic製品を既に使っているなら魅力的です。
+			
+			ただし、
+				Thunderbolt接続
+				Desktop Videoなど専用ソフトウェアとの組み合わせ
+			になるため、「USBカメラとして手軽に扱う」という意味では、Cam LinkやMagewellのほうがシンプルです。
+		
+		- UGREEN HDMI キャプチャーボード
+			¥3,000
+			
+			これらもUVC対応ならoFから普通に使えることが多く、「まずHDMI入力を試したい」という用途には十分です。
+			
+			ただ、長時間運用では
+				フレームドロップ
+				HDMI再接続時の不安定さ
+				発熱
+			など、個体差が出やすい印象があります。展示作品で何時間・何日も動かすなら、やはり業務用との差は感じる場面があると思います。
+
+
+■ 一眼レフカメラを無線NDI化したいなら
+	HDMI → 無線HDMI : 一番現場で使われている構成 : 無線にするのはHDMIだけ。
+	
+	■ 接続イメージ
+		Sony α7 -HDMI- Wireless HDMI
+			)))))))) 5GHz
+		Receiver -HDMI- NDI Encoder -Lan- mac
+	
+	
+	■ Device
+		- Hollyland Mars 4K
+		- Hollyland Pyro H
+		- DJI Transmission
+	
+	■ メリット
+		プロの現場で実績が多い
+		遅延が少ない
+		一眼レフをそのまま使える
+	
+	■ デメリット
+		少し高価
+		送受信機が必要
+	
+
+
+■ 使い分け 例
+	- 手持ち・移動 : 観客参加
+		iPhone + NDI（無線）
+		
+	- 高画質な撮影 : pro カメラマン
+		無線
+			HDMIカメラ - wirelessHDMI send >> receive - NDI Encoder - Lan - mac
+			
+		有線
+			HDMIカメラ - NDI Encoder - Lan - mac
+		
+	- ノード側で特殊処理・生成映像
+		HDMIカメラ - captureCard - mac:oF:ofVideoGrabber - NDI - Lan - MainMac
+
+
